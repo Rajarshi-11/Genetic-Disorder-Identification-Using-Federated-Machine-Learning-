@@ -1,0 +1,2 @@
+# Genetic-Disorder-Identification-Using-Federated-Machine-Learning-
+A privacy-preserving system that leverages Federated Learning and Deep Learning to identify genetic disorders and their subclasses without centralizing sensitive medical data. The project uses a full-stack web interface to allow user input and displays predictions securely using a Flask backend and TensorFlow Federated for model training. 
