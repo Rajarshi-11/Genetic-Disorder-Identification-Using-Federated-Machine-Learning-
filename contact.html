@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="templates/sym.png">
+    <title>SecureDNA- Contact Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="contact.css">
+
+</head>
+
+<body class="min-h-screen">
+    <!-- Notification element -->
+    <div id="notification" class="notification"></div>
+
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-50 bg-blur">
+        <div class="container mx-auto px-4 md:px-6 flex flex-wrap items-center justify-between">
+            <!-- Logo/Brand Name -->
+             <link rel="icon" type="image/x-icon" href="templates/sym.png">
+            <a href="index.html" class="flex items-center space-x-2" onclick="showPage('home')">
+                
+                <span
+                    class=" text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text
+                text-transparent">SecureDNA</span>
+                
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8" id="nav-links">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-blue-500">Home</a>
+                <a href="predict.html" class="nav-link text-gray-600 hover:text-blue-500">Predict</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-blue-500"
+                    onclick="showPage('about')">About</a>
+                <a href="contact.html" class="nav-link text-blue-500 active font-semibold">Contact</a>
+            </div>
+
+            <!-- Desktop Auth Buttons -->
+            <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+                <button onclick="window.location.href='login.html'"
+                    class="px-4 py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+                <button onclick="window.location.href='register.html'"
+                    class="px-4 py-2 text-white gradient-btn rounded-lg">Register</button>
+            </div>
+
+            <!-- User Profile (desktop) -->
+            <div class="hidden items-center space-x-4" id="user-profile">
+                <div class="flex items-center space-x-2">
+                    <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span class="font-medium text-gray-700" id="username-display"></span>
+                </div>
+                <button onclick="logout()"
+                    class="px-4 py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-blue-500">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 shadow-inner">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="py-2 text-gray-600 hover:text-blue-500">Home</a>
+                <a href="predict.html" class="py-2 text-gray-600 hover:text-blue-500">Predict</a>
+                <a href="contact.html" class="py-2 text-blue-500">Contact</a>
+                <hr>
+                <!-- Mobile Auth Buttons -->
+                <div class="flex flex-col space-y-2" id="mobile-auth-buttons">
+                    <button onclick="window.location.href='login.html'"
+                        class="py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+                    <button onclick="window.location.href='register.html'"
+                        class="py-2 text-white gradient-btn rounded-lg">Register</button>
+                </div>
+                <div class="hidden flex-col space-y-2" id="mobile-user-profile">
+                    <div class="flex items-center space-x-2">
+                        <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="font-medium text-gray-700" id="mobile-username-display"></span>
+                    </div>
+                    <button onclick="logout()"
+                        class="py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-500 to-green-500 py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Contact Us</h1>
+            <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
+                Have questions or need assistance? We're here to help you with all your agricultural technology needs.
+            </p>
+        </div>
+    </div>
+
+    <!-- Contact Info Cards -->
+    <div class="contact-section container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="contact-card glass p-6 rounded-xl text-center">
+                <div class="contact-icon text-white text-2xl mb-4">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Our Location</h3>
+                <p class="text-gray-600">
+                    Kolkata, India<br>
+                </p>
+            </div>
+
+            <div class="contact-card glass p-6 rounded-xl text-center">
+                <div class="contact-icon text-white text-2xl mb-4">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Phone Number</h3>
+                <p class="text-gray-600">
+                    Customer Support:<br>
+                    <a href="tel:+918765432100" class="text-blue-500 hover:underline">+91 9830602203</a>
+                </p>
+                <p class="text-gray-600 mt-2">
+                    Technical Support:<br>
+                    <a href="tel:+918765432101" class="text-blue-500 hover:underline">03340585123</a>
+                </p>
+            </div>
+
+            <div class="contact-card glass p-6 rounded-xl text-center">
+                <div class="contact-icon text-white text-2xl mb-4">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Email Us</h3>
+                <p class="text-gray-600">
+                    General Inquiries:<br>
+                    <a href="mailto:info@agritech.in" class="text-blue-500 hover:underline">info@Securedna.in</a>
+                </p>
+                <p class="text-gray-600 mt-2">
+                    Support Team:<br>
+                    <a href="mailto:support@agritech.in" class="text-blue-500 hover:underline">support@geno.ai</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Send Us a <span
+                            class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Message</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Have questions, feedback, or need assistance? Fill out the form below and our team will get back
+                        to you as soon as possible.
+                    </p>
+                </div>
+
+                <div class="glowing-border">
+                    <div class="glass p-8 rounded-xl">
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full
+                                        Name</label>
+                                    <input type="text" id="name" name="name"
+                                        class="input-field w-full px-4 py-3 outline-none"
+                                        placeholder="Enter your full name" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email
+                                        Address</label>
+                                    <input type="email" id="email" name="email"
+                                        class="input-field w-full px-4 py-3 outline-none"
+                                        placeholder="Enter your email address" required>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number
+                                    (Optional)</label>
+                                <input type="tel" id="phone" name="phone"
+                                    class="input-field w-full px-4 py-3 outline-none"
+                                    placeholder="Enter your phone number">
+                            </div>
+
+                            <div>
+                                <label for="subject"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                <input type="text" id="subject" name="subject"
+                                    class="input-field w-full px-4 py-3 outline-none"
+                                    placeholder="What is this regarding?" required>
+                            </div>
+
+                            <div>
+                                <label for="message"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="6"
+                                    class="input-field w-full px-4 py-3 outline-none resize-none"
+                                    placeholder="Please provide details about your inquiry..." required></textarea>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" name="terms" type="checkbox" required
+                                        class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="terms" class="font-medium text-gray-700">I agree to the <a href="#"
+                                            class="text-blue-500 hover:underline">Terms of Service</a> and <a href="#"
+                                            class="text-blue-500 hover:underline">Privacy Policy</a></label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button type="submit"
+                                    class="w-full py-3 text-white gradient-btn rounded-lg text-lg font-medium">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                Our <span
+                    class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Location</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Visit our headquarters at the Genetic Research and Innovation Center in Kolkata.
+            </p>
+        </div>
+
+        <div class="my-6 text-center">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.123456789012!2d88.434578!3d22.6296667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a027b1234567890%3A0x1234567890abcdef!2sB.%20P.%20Poddar%20Institute%20of%20Management%20and%20Technology!5e0!3m2!1sen!2sin!4v1612345678901"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/place/B.+P.+Poddar+Institute+of+Management+and+Technology/@22.6296667,88.434578,17z"
+                target="_blank"
+                class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                <i class="fas fa-map-marker-alt mr-2"></i>View on Google Maps
+            </a>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="bg-gray-50 py-16">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Frequently Asked <span
+                            class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Questions</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Find quick answers to common questions about our services.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <div class="glass p-6 rounded-xl">
+                        <div class="flex justify-between cursor-pointer" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-semibold text-gray-800">How reliable is the genetic disorder
+                                diagnosis?
+                            </h3>
+                            <span class="text-blue-500 text-xl transition-transform transform">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-600">
+                                Our disease predictions are powered by advanced Federated machine learning algorithms
+                                with an accuracy rate of 98%. We analyze multiple genetic markers, patient symptoms, and
+                                clinical data to provide the most precise diagnosis and personalized health
+                                recommendations for your condition.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass p-6 rounded-xl">
+                        <div class="flex justify-between cursor-pointer" onclick="toggleFAQ(this)">
+                            <h3 class="text-xl font-semibold text-gray-800">How does AI help in genetic disease
+                                prediction?
+                                system?</h3>
+                            <span class="text-blue-500 text-xl transition-transform transform">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+                        </div>
+                        <div class="faq-answer mt-4 hidden">
+                            <p class="text-gray-600">
+                                AI models analyze large datasets of genetic markers and clinical symptoms to find
+                                patterns that indicate specific diseases, improving accuracy and speeding up diagnosis.
+                            </p>
+                        </div>
+                        <!-- Continue with additional FAQ items -->
+                        <div class="glass p-6 rounded-xl">
+                            <div class="flex justify-between cursor-pointer" onclick="toggleFAQ(this)">
+                                <h3 class="text-xl font-semibold text-gray-800">How does symptom variability affect
+                                    genetic disorder diagnosis?
+                                    issues?</h3>
+                                <span class="text-blue-500 text-xl transition-transform transform">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <div class="faq-answer mt-4 hidden">
+                                <p class="text-gray-600">
+                                    Symptoms of genetic disorders can vary between individuals even with the same
+                                    mutation, making accurate prediction essential for personalized diagnosis.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="glass p-6 rounded-xl">
+                            <div class="flex justify-between cursor-pointer" onclick="toggleFAQ(this)">
+                                <h3 class="text-xl font-semibold text-gray-800">Should I get genetic testing if I have
+                                    symptoms but no family history?
+                                </h3>
+                                <span class="text-blue-500 text-xl transition-transform transform">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <div class="faq-answer mt-4 hidden">
+                                <p class="text-gray-600">
+                                    Yes, genetic mutations can also occur spontaneously. Testing can help clarify the
+                                    cause of symptoms and guide treatment.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="glass p-6 rounded-xl">
+                            <div class="flex justify-between cursor-pointer" onclick="toggleFAQ(this)">
+                                <h3 class="text-xl font-semibold text-gray-800">How do I access the mobile app features?
+                                </h3>
+                                <span class="text-blue-500 text-xl transition-transform transform">
+                                    <i class="fas fa-chevron-down"></i>
+                                </span>
+                            </div>
+                            <div class="faq-answer mt-4 hidden">
+                                <p class="text-gray-600">
+                                    Our mobile application is available for both Android and iOS devices. You can
+                                    download
+                                    it from the Google Play Store or Apple App Store by searching for "SecureDNA" on
+                                    India."
+                                    The
+                                    mobile app provides all the features of our web platform plus additional
+                                    capabilities
+                                    like offline access and camera-based plant disease identification.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="container mx-auto px-4 py-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                        Connect With <span
+                            class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Us</span>
+                    </h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                        Connect with us to stay informed about genetic health, diagnostics, and patient support.
+                    </p>
+                </div>
+
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="social-icon bg-blue-600 text-white text-2xl">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-blue-400 text-white text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-pink-600 text-white text-2xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-blue-700 text-white text-2xl">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-red-600 text-white text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="social-icon bg-green-500 text-white text-2xl">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="tech-border"></div>
+                <div class="circuit-lines"></div>
+                <div class="digital-mesh"></div>
+
+                <!-- Tech Elements -->
+                <div class="tech-circles tech-circles-1"></div>
+                <div class="tech-circles tech-circles-2"></div>
+                <div class="tech-dot tech-dot-1"></div>
+                <div class="tech-dot tech-dot-2"></div>
+                <div class="tech-dot tech-dot-3"></div>
+                <div class="data-element data-element-1"></div>
+                <div class="data-element data-element-2"></div>
+
+                <div class="footer-container">
+                    <div class="footer-grid">
+                        <div>
+                            <div class="footer-logo">
+                                <div class="logo-icon">
+                                    <i class="fas fa-dna text-green-400"></i>
+                                    <div class="digit-graphic">010101</div>
+                                </div>
+                                <span>SecureDNA</span>
+                            </div>
+                            <p class="footer-about">
+                                Revolutionizing agriculture through data-driven insights and AI technologies. We're
+                                committed to sustainable farming practices and improving crop yields for farmers across
+                                India.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="footer-heading">Quick Links</h3>
+                            <ul class="footer-list">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="/Agritech/templates/predict.html">Predict</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="footer-heading">Contact Info</h3>
+                            <div class="contact-item">
+                                <span class="contact-label">Address:</span>
+                                <span>Kolkata, India</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Phone:</span>
+                                <a href="tel:+918765432100">+91 9830602203</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Email:</span>
+                                <a href="mailto:info@agritech.in">info@Securedna.in & support@geno.ai</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 SecureDNA. All rights reserved. | Built with Care for Every Patient<i
+                                class="fas fa-heart text-red-500"></i></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Check authentication status on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            checkAuth();
+        });
+
+        // Check if user is logged in
+        function checkAuth() {
+            const user = localStorage.getItem('agritech_user');
+
+            if (user) {
+                const userData = JSON.parse(user);
+
+                // Show user profile and hide auth buttons
+                document.getElementById('auth-buttons').classList.add('hidden');
+                document.getElementById('user-profile').classList.remove('hidden');
+                document.getElementById('username-display').textContent = userData.name;
+
+                // Mobile view
+                document.getElementById('mobile-auth-buttons').classList.add('hidden');
+                document.getElementById('mobile-user-profile').classList.remove('hidden');
+                document.getElementById('mobile-username-display').textContent = userData.name;
+            } else {
+                // Show auth buttons and hide user profile
+                document.getElementById('auth-buttons').classList.remove('hidden');
+                document.getElementById('user-profile').classList.add('hidden');
+
+                // Mobile view
+                document.getElementById('mobile-auth-buttons').classList.remove('hidden');
+                document.getElementById('mobile-user-profile').classList.add('hidden');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('agritech_user');
+            checkAuth();
+            showNotification('You have been logged out successfully.', 'success');
+        }
+
+        // Toggle FAQ answers
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification ' + type;
+            notification.classList.add('show');
+
+            setTimeout(function () {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Normally we would send the form data to a server here
+            // For demo purposes, we'll just show a success message
+            showNotification('Your message has been sent successfully! We will contact you soon.', 'success');
+
+            // Reset form
+            this.reset();
+        });
+
+        // Newsletter subscription
+        document.getElementById('subscribeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Normally we would send the subscription to a server here
+            // For demo purposes, we'll just show a success message
+            showNotification('Thank you for subscribing to our newsletter!', 'success');
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="templates/sym.png">
+  <title>SecureDNA - We don’t guess your future, we decode it!</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="Predict.css" />
+
+</head>
+
+<body class="min-h-screen">
+  <!-- Notification element -->
+  <div id="notification" class="notification"></div>
+
+  <nav class="bg-white shadow-md py-4 sticky top-0 z-50 bg-blur">
+    <div class="container mx-auto px-4 md:px-6 flex flex-wrap items-center justify-between">
+      <!-- Logo/Brand Name -->
+      <a href="index.html" class="flex items-center space-x-2" onclick="showPage('home')">
+      <img src="templates/sym.png" alt="Logo" class="h-10 w-10">
+        <span
+          class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">SecureDNA</span>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8" id="nav-links">
+        <a href="index.html" class="nav-link text-gray-600 hover:text-blue-500" onclick="showPage('home')">Home</a>
+        <a href="predict.html" class="nav-link text-gray-600 hover:text-blue-500"
+          onclick="checkAuthAndRedirect('prediction')">Predict</a>
+        <a href="about.html" class="nav-link text-gray-600 hover:text-blue-500" onclick="showPage('about')">About</a>
+        <a href="contact.html" class="nav-link text-gray-600 hover:text-blue-500"
+          onclick="showPage('contact')">Contact</a>
+      </div>
+
+      <!-- Desktop Auth Buttons (UPDATED) -->
+      <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+        <button onclick="window.location.href='login.html'"
+          class="px-4 py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+        <button onclick="window.location.href='register.html'"
+          class="px-4 py-2 text-white gradient-btn rounded-lg">Register</button>
+      </div>
+
+      <!-- User Profile (desktop) -->
+      <div class="hidden items-center space-x-4" id="user-profile">
+        <div class="flex items-center space-x-2">
+          <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+            <i class="fas fa-user"></i>
+          </span>
+          <span class="font-medium text-gray-700" id="username-display"></span>
+        </div>
+        <button onclick="logout()"
+          class="px-4 py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-blue-500">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 shadow-inner">
+      <div class="flex flex-col space-y-3">
+        <a href="index.html" class="py-2 text-gray-600 hover:text-blue-500" onclick="showPage('home')">Home</a>
+        <a href="disease_predict.html" class="py-2 text-gray-600 hover:text-blue-500"
+          onclick="checkAuthAndRedirect('prediction')">Predict</a>
+        <a href="about.html" class="nav-link text-gray-600 hover:text-blue-500" onclick="showPage('about')">About</a>
+        <a href="contact.html" class="py-2 text-gray-600 hover:text-blue-500" onclick="showPage('contact')">Contact</a>
+        <hr>
+        <!-- Mobile Auth Buttons (UPDATED) -->
+        <div class="flex flex-col space-y-2" id="mobile-auth-buttons">
+          <button onclick="window.location.href='register.html#login'"
+            class="py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+          <button onclick="window.location.href='register.html#register'"
+            class="py-2 text-white gradient-btn rounded-lg">Register</button>
+        </div>
+        <div class="hidden flex-col space-y-2" id="mobile-user-profile">
+          <div class="flex items-center space-x-2">
+            <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+              <i class="fas fa-user"></i>
+            </span>
+            <span class="font-medium text-gray-700" id="mobile-username-display"></span>
+          </div>
+          <button onclick="logout()"
+            class="py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Page -->
+  <div id="home" class="page active">
+    <div class="container mx-auto px-4 py-16 md:py-24">
+
+      <!-- Heading (Centered) -->
+      <h1 class="text-4xl md:text-5xl font-bold text-center text-gray-800 mb-6">
+        Gentic Disease Prediction with
+        <span class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">AI-Powered</span>
+      </h1>
+
+      <!-- Description (Centered) -->
+      <p class="text-lg text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+        Enhance healthcare outcomes through our advanced genetic analysis and precise disease prediction system. Obtain
+        personalized insights derived from your genetic profile and clinical information to support accurate diagnosis
+        and informed medical decisions.
+      </p>
+
+      <!-- Content Row (Centered) -->
+      <div class="flex flex-col md:flex-row justify-center items-start gap-12">
+
+
+
+        <!-- Right Column: Image + Features -->
+        <div class="w-full md:w-2/3 max-w-4xl mx-auto">
+
+          <div class="glowing-border">
+            <div class="glass p-6 md:p-8 rounded-xl ">
+              <!-- Feature Box 2 -->
+              <div class="bg-white p-4 rounded-lg shadow-sm align- text-center">
+                <div class="flex items-center gap-3">
+                  <div class="text-green-500 text-xl"><i class="fas fa-leaf"></i></div>
+                  <div>
+                    <a href="/disease_predict.html">
+                      <h3 class="font-semibold text-gray-800">Prediction Zone</h3>
+                      <p class="text-sm text-gray-500">AI-driven recommendations</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- end grid -->
+          </div> <!-- end glass -->
+        </div> <!-- end glowing-border -->
+      </div> <!-- end right column -->
+
+    </div> <!-- end content row -->
+  </div> <!-- end container -->
+  </div> <!-- end home -->
+
+
+
+
+
+  <footer class="footer">
+    <!-- Futuristic UI Elements -->
+    <div class="tech-border"></div>
+    <div class="circuit-lines"></div>
+    <div class="digital-mesh"></div>
+
+    <!-- Tech Accent Elements -->
+    <div class="tech-circles tech-circles-1"></div>
+    <div class="tech-circles tech-circles-2"></div>
+    <div class="tech-dot tech-dot-1"></div>
+    <div class="tech-dot tech-dot-2"></div>
+    <div class="tech-dot tech-dot-3"></div>
+    <div class="data-element data-element-1"></div>
+    <div class="data-element data-element-2"></div>
+
+    <!-- Digital Background Pattern -->
+    <div class="digit-graphic">
+      01001000 01000001 01010010 01010110 01000101 01010011 01010100 00100000 01000001 01001001 00100000 01010011
+      01001111 01001001 01001100 00100000 01000100 01000001 01010100 01000001
+    </div>
+
+    <!-- Main Footer Content -->
+    <div class="footer-container">
+      <div class="footer-grid">
+        <!-- Logo / About -->
+        <div>
+          <div class="footer-logo">
+            </svg>
+            </span>
+            <i class="fas fa-dna text-green-400"></i>
+            <div class="digit-graphic">010101</div>
+            <span class="logo-text">SecureDNA</span>
+          </div>
+          <p class="footer-about">
+            Revolutionizing healthcare with AI-powered genetic disorder predictions and intelligent diagnostics. Join us
+            in shaping the future of precision medicine.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h3 class="footer-heading">Explore</h3>
+          <ul class="footer-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Predict</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h3 class="footer-heading">Contact</h3>
+          <div class="contact-item">
+            <span class="contact-label">Email:</span>
+            <a href="mailto:support@cropsoil.ai">support@geno.ai</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Phone:</span>
+            <span>+91 9830602203</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Location:</span>
+            <span>Kolkata, India</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Line -->
+      <div class="footer-bottom">
+        <p>&copy; 2025 SecureDNA. All rights reserved. | Built with Care for Every Patient<i
+            class="fas fa-heart text-red-500"></i></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

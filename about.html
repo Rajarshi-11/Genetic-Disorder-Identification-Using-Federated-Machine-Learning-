@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="templates/sym.png">
+    <title>SecureDNA - About Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="about.css">
+
+</head>
+
+<body class="min-h-screen">
+    <!-- Notification element -->
+    <div id="notification" class="notification"></div>
+
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-50 bg-blur">
+        <div class="container mx-auto px-4 md:px-6 flex flex-wrap items-center justify-between">
+            <!-- Logo/Brand Name -->
+            <a href="index.html" class="flex items-center space-x-2">
+                <img src="templates/sym.png" alt="SecureDNA Logo" class="w-8 h-8">
+                <span
+                    class="text-3xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">SecureDNA</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8" id="nav-links">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-blue-500">Home</a>
+                <a href="predict.html" class="nav-link text-gray-600 hover:text-blue-500">Predict</a>
+                <a href="about.html" class="nav-link text-gray-600 hover:text-blue-500"
+                    onclick="showPage('about')">About</a>
+                <a href="contact.html" class="nav-link text-gray-600 hover:text-blue-500">Contact</a>
+            </div>
+
+            <!-- Desktop Auth Buttons -->
+            <div class="hidden md:flex items-center space-x-4" id="auth-buttons">
+                <button onclick="window.location.href='login.html'"
+                    class="px-4 py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+                <button onclick="window.location.href='register.html'"
+                    class="px-4 py-2 text-white gradient-btn rounded-lg">Register</button>
+            </div>
+
+            <!-- User Profile (desktop) -->
+            <div class="hidden items-center space-x-4" id="user-profile">
+                <div class="flex items-center space-x-2">
+                    <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span class="font-medium text-gray-700" id="username-display"></span>
+                </div>
+                <button onclick="logout()"
+                    class="px-4 py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-500 hover:text-blue-500">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white px-4 py-2 shadow-inner">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" class="py-2 text-gray-600 hover:text-blue-500">Home</a>
+                <a href="predict.html" class="py-2 text-gray-600 hover:text-blue-500">Predict</a>
+                <a href="about.html" class="py-2 text-blue-500">About</a>
+                <a href="contact.html" class="py-2 text-gray-600 hover:text-blue-500">Contact</a>
+                <hr>
+                <!-- Mobile Auth Buttons -->
+                <div class="flex flex-col space-y-2" id="mobile-auth-buttons">
+                    <button onclick="window.location.href='login.html'"
+                        class="py-2 text-blue-500 border border-blue-500 rounded-lg hover:bg-blue-50 transition">Login</button>
+                    <button onclick="window.location.href='register.html'"
+                        class="py-2 text-white gradient-btn rounded-lg">Register</button>
+                </div>
+                <div class="hidden flex-col space-y-2" id="mobile-user-profile">
+                    <div class="flex items-center space-x-2">
+                        <span class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white">
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <span class="font-medium text-gray-700" id="mobile-username-display"></span>
+                    </div>
+                    <button onclick="logout()"
+                        class="py-2 text-red-500 border border-red-500 rounded-lg hover:bg-red-50 transition">Logout</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-500 to-green-500 py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">About SecureDNA</h1>
+            <p class="text-xl text-white opacity-90 max-w-3xl mx-auto">
+                We're revolutionizing healthcare by combining cutting-edge AI technology with deep genetic insights to
+                empower early and accurate prediction of genetic diseases.
+            </p>
+        </div>
+    </div>
+
+    <!-- Our Story Section -->
+    <div class="about-section container mx-auto px-4 py-16">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                    Our <span
+                        class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Story</span>
+                </h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Founded in 2024, SecureDNA was born from a collaboration between geneticists, AI researchers, and
+                    healthcare professionals united by a shared mission—early detection and personalized prediction of
+                    genetic disorders.
+                </p>
+                <p class="text-lg text-gray-600 mb-6">
+                    What began as a research initiative at the Indian Institute of Genomics has evolved into an
+                    intelligent prediction platform assisting patients, clinicians, and researchers across the nation.
+                    Our team realized that harnessing genetic data with AI could revolutionize how disorders are
+                    detected, predicted, and managed—long before symptoms appear.
+                </p>
+                <p class="text-lg text-gray-600">
+                    Today, we work with medical institutions, research labs, and diagnostic centers to enhance our
+                    prediction models and drive innovation in preventive genomics and precision medicine.
+                </p>
+            </div>
+            <div class="w-full md:w-1/2">
+                <div class="glowing-border">
+                    <div class="glass p-6 rounded-xl">
+                        <div class="flex items-center gap-2 mb-4 p-3 border border-gray-300 rounded-lg bg-gray-80">
+                            <img src="templates/group.png" alt="Team SecureDNA"
+                                class="w-10 h-auto rounded-md shadow-sm">
+                            <h2 class="text-lg font-semibold text-colour text-yellow-500">Team SecureDNA</h2>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="milestone-card bg-white p-4 rounded-lg shadow-sm">
+                                <div class="flex items-start gap-2">
+                                    <div class="text-blue-500 text-xl">
+                                        <i class="fas fa-flag-checkered"></i>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <h3 class="font-semibold text-gray-800">2024</h3>
+                                        <p class="text-sm text-gray-500">SecureDNA project initiated at IIGPM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="milestone-card bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="text-green-500 text-xl">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">2025</h3>
+                                    <p class="text-sm text-gray-500">Recognized for innovation in Genomics Sector
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="milestone-card bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <div class="text-purple-500 text-xl">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">2025</h3>
+                                    <p class="text-sm text-gray-500">Platform expanded to serve all of India</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Our Mission Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    Our <span
+                        class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Mission</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our mission is to empower individuals and healthcare providers with accurate, AI-driven insights for
+                    early detection of genetic disorders.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="value-card glass p-6 rounded-xl text-center relative">
+                    <div
+                        class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">AI-Driven Healthcare</h3>
+                    <p class="text-gray-600">Promoting healthcare practices that enhance early diagnosis, improve
+                        patient outcomes, and reduce long-term medical costs through AI-driven genetic insights.</p>
+                </div>
+                <div class="value-card glass p-6 rounded-xl text-center relative">
+                    <div
+                        class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Innovation & Research</h3>
+                    <p class="text-gray-600">Committed to innovation by evolving our methodologies with the latest
+                        scientific breakthroughs and patient-centered feedback.</p>
+                </div>
+                <div class="value-card glass p-6 rounded-xl text-center relative">
+                    <div
+                        class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Genetic Awareness</h3>
+                    <p class="text-gray-600">Empowering people through genetic awareness and easy-to-use AI-driven
+                        prediction tools.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="about-section container mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                Our <span
+                    class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Impact</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Empowering healthier futures through timely, AI-driven genetic disorder prediction.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="stat-card glass p-6 rounded-xl text-center">
+                <div class="text-5xl stat-number mb-2">15,00+</div>
+                <p class="text-lg text-gray-600">Early Diagnoses Enabled</p>
+            </div>
+            <div class="stat-card glass p-6 rounded-xl text-center">
+                <div class="text-5xl stat-number mb-2">40%</div>
+                <p class="text-lg text-gray-600">Average Diagnostic Accuracy
+
+                </p>
+            </div>
+            <div class="stat-card glass p-6 rounded-xl text-center">
+                <div class="text-5xl stat-number mb-2">98%</div>
+                <p class="text-lg text-gray-600">Prediction Accuracy</p>
+            </div>
+            <div class="stat-card glass p-6 rounded-xl text-center">
+                <div class="text-5xl stat-number mb-2">22</div>
+                <p class="text-lg text-gray-600">Indian States Covered</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    Meet Our <span
+                        class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Team</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Uniting experts in genetics, AI, and healthcare to transform disease prediction and patient care.
+                </p>
+            </div>
+            <div class="flex overflow-x-auto space-x-6 px-4 py-12">
+                <div class="team-member glass p-6 rounded-xl min-w-[250px]">
+                    <img src="/templates/AD.jpg" alt="Team Member" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">DR. ARIJIT DEY</h3>
+                    <p class="text-blue-500 mb-2">ASST. PROF OF MCA </p>
+                    <p class="text-green-600 mb-3">MENTOR</p>
+                    <p class="text-gray-600 mb-3">B. P. PODDAR INSTITUTE OF MANAGEMENT AND TECHNOLOGY</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member glass p-6 rounded-xl min-w-[250px]">
+                    <img src="/templates/RM.jpg" alt="Team Member" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">RAJARSHI MAZUMDER</h3>
+                    <p class="text-blue-500 mb-2">STUDENT OF MCA</p>
+                    <p class="text-green-600 mb-3">TEAM MEMBER</p>
+                    <p class="text-gray-600 mb-3">B. P. PODDAR INSTITUTE OF MANAGEMENT AND TECHNOLOGY</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="https://www.linkedin.com/in/rajarshi-mazumder-7b37501a6/" target="_blank"
+                            rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+
+                        <a href="https://x.com/imRmazumder" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-500 hover:text-blue-700">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:rajarshi.mazumder@gmail.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-600 hover:text-gray-800">
+                            <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+
+                <div class="team-member glass p-6 rounded-xl min-w-[250px]">
+                    <img src="templates/PG.jpg" alt="Team Member" class="w-full h-80 object-cover rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">PRALOY GHOSH</h3>
+                    <p class="text-blue-500 mb-2">STUDENT OF MCA</p>
+                    <p class="text-green-600 mb-3">TEAM MEMBER</p>
+                    <p class="text-gray-600 mb-3">B. P. PODDAR INSTITUTE OF MANAGEMENT AND TECHNOLOGY</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="https://www.linkedin.com/in/praloy-ghosh-69239b1b8/" target="_blank"
+                            rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/I_am_praloy" target="_blank" rel="noopener noreferrer"
+                            class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter"></i></a>
+                        <a href="mailto:praloy.ghosh.working@gmail.com" target="_blank" rel="noopener noreferrer"
+                            class="text-gray-600 hover:text-gray-800">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-member glass p-6 rounded-xl min-w-[250px]">
+                    <img src="/templates/paromita1.jpg" alt="Team Member"
+                        class="w-full h-80 object-cover object-top rounded-lg mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">PAROMITA GHOSH</h3>
+                    <p class="text-blue-500 mb-2">STUDENT OF MCA</p>
+                    <p class="text-green-600 mb-3">TEAM MEMBER</p>
+                    <p class="text-gray-600 mb-3">B. P. PODDAR INSTITUTE OF MANAGEMENT AND TECHNOLOGY</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-member glass p-6 rounded-xl min-w-[250px]">
+                    <img src="/templates/sayan.jpg" alt="Team Member" class="w-full h-80 object-cover mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">SAYAN GHOSH</h3>
+                    <p class="text-blue-500 mb-2">STUDENT OF MCA</p>
+                    <p class="text-green-600 mb-3">TEAM MEMBER</p>
+                    <p class="text-gray-600 mb-3">B. P. PODDAR INSTITUTE OF MANAGEMENT AND TECHNOLOGY</p>
+                    <div class="flex justify-center space-x-3">
+                        <a href="#" class="text-blue-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-600 hover:text-gray-800"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Partners Section -->
+    <div class="bg-gray-50 py-5">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our <span
+                        class="bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">Partners</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    We collaborate with leading genomic research institutes, healthcare providers, and technology
+                    partners to advance AI-driven genetic diagnostics.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 px-4 py-6">
+                <!-- Partner 1 -->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
+                    <img src="templates/absci.jpg" alt="Absci Logo" class="max-h-20 mb-2">
+                    <p class="text-sm font-medium text-gray-700">ABSCI</p>
+                </div>
+
+                <!-- Partner 2 -->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
+                    <img src="templates/aion.jpg" alt="Aion Logo" class="max-h-20 mb-2">
+                    <p class="text-sm font-medium text-gray-700">AION</p>
+                </div>
+
+                <!-- Partner 3 -->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
+                    <img src="templates/metrodata.jpg" alt="Metrodata Logo" class="max-h-20 mb-2">
+                    <p class="text-sm font-medium text-gray-700">METRODATA</p>
+                </div>
+
+                <!-- Partner 4 -->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
+                    <img src="templates/nanoph.jpg" alt="Nanopharmaceutics Logo" class="max-h-20 mb-2">
+                    <p class="text-sm font-medium text-gray-700">NANOPHARMACEUTICS
+
+                    </p>
+                </div>
+
+                <!-- Partner 5 -->
+                <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow-sm">
+                    <img src="templates/nxera.jpg" alt="Nxera Logo" class="max-h-20 mb-2">
+                    <p class="text-sm font-medium text-gray-700">NXERA
+
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="container mx-auto px-4 py-10">
+        <div class="glass p-8 rounded-xl text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Ready to Predict and Prevent Genetic Disorders?
+
+            </h2>
+            <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                Be part of a growing community leveraging predictive genomics for better health outcomes.
+
+
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="window.location.href='register.html'"
+                    class="px-8 py-3 text-lg font-medium text-white gradient-btn rounded-lg">
+                    Get Started For Free
+                </button>
+                <button onclick="window.location.href='contact.html'"
+                    class="px-8 py-3 text-lg font-medium text-blue-500 border-2 border-blue-500 rounded-lg hover:bg-blue-50 transition">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="tech-border"></div>
+        <div class="circuit-lines"></div>
+        <div class="digital-mesh"></div>
+        <div class="tech-circles tech-circles-1"></div>
+        <div class="tech-circles tech-circles-2"></div>
+        <div class="tech-dot tech-dot-1"></div>
+        <div class="tech-dot tech-dot-2"></div>
+        <div class="tech-dot tech-dot-3"></div>
+        <div class="data-element data-element-1"></div>
+        <div class="data-element data-element-2"></div>
+
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Logo / About -->
+                <div>
+                    <div class="footer-logo">
+                        <circle cx="12" cy="12" r="3" fill="#00d2ff"></circle>
+                        </svg>
+                        </span>
+                        <i class="fas fa-dna text-green-400"></i>
+                        <div class="digit-graphic">010101</div>
+                        <span class="logo-text">SecureDNA</span>
+
+                    </div>
+                    <p class="footer-about">
+                        Revolutionizing healthcare with AI-powered genetic disorder predictions and intelligent
+                        diagnostics. Join us in shaping the future of precision medicine.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="footer-heading">Explore</h3>
+                    <ul class="footer-list">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="predict.html" onclick="checkAuthAndRedirect('Predict')">Predict</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="footer-heading">Contact</h3>
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <a href="mailto:support@geno.ai">support@geno.ai</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Phone:</span>
+                        <span>+91 9830602203</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Location:</span>
+                        <span>Kolkata, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Line -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 SecureDNA. All rights reserved. | Built with Care for Every Patient<i
+                        class="fas fa-heart text-red-500"></i></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
+<!-- JavaScript -->
+<script>
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Check user authentication status
+    function checkAuthStatus() {
+        const token = localStorage.getItem('authToken');
+        const username = localStorage.getItem('username');
+
+        if (token && username) {
+            // User is logged in
+            document.getElementById('auth-buttons').classList.add('hidden');
+            document.getElementById('user-profile').classList.remove('hidden');
+            document.getElementById('user-profile').classList.add('flex');
+            document.getElementById('username-display').textContent = username;
+
+            document.getElementById('mobile-auth-buttons').classList.add('hidden');
+            document.getElementById('mobile-user-profile').classList.remove('hidden');
+            document.getElementById('mobile-user-profile').classList.add('flex');
+            document.getElementById('mobile-username-display').textContent = username;
+        } else {
+            // User is not logged in
+            document.getElementById('auth-buttons').classList.remove('hidden');
+            document.getElementById('user-profile').classList.add('hidden');
+            document.getElementById('user-profile').classList.remove('flex');
+
+            document.getElementById('mobile-auth-buttons').classList.remove('hidden');
+            document.getElementById('mobile-user-profile').classList.add('hidden');
+            document.getElementById('mobile-user-profile').classList.remove('flex');
+        }
+    }
+
+    // Logout function
+    function logout() {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('username');
+        showNotification('Logged out successfully', 'success');
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1500);
+    }
+
+    // Show notification
+    function showNotification(message, type) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.className = `notification ${type}`;
+        notification.classList.add('show');
+
+        setTimeout(() => {
+            notification.classList.remove('show');
+        }, 3000);
+    }
+
+    // Call on page load
+    document.addEventListener('DOMContentLoaded', function () {
+        checkAuthStatus();
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genetic Disease Predictor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 30%, #2c5530 70%, #4a7c59 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #e2e8f0;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 22px 28px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            color: white;
+            font-size: 1.2rem;
+            backdrop-filter: blur(12px);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 25px rgba(255, 107, 107, 0.4);
+        }
+
+        .generate-btn {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #a64ac9, #ffb347);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            text-decoration: none;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #f01746dc;
+        }
+
+        .results-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #f17420;
+        }
+
+        .result-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: rgba(17, 209, 119, 0.87);
+        }
+
+        .result-item span {
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            color: #309b50;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Query */
+        @media (max-width: 768px) {
+
+            .input-grid,
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header text-center p-4">
+            <!-- 🧬 Logo image symbol (visual, not favicon) -->
+            <img src="templates/sym.png" alt="Logo" style="height: 80px; margin: auto;" />
+
+            <!-- Heading -->
+            <h1><i class="fas fa-dna"></i> Genetic Disease Predictor</h1>
+            <p style="color: #1ad123; font-size: 1.1rem;">Advanced AI-powered genetic disorder analysis</p>
+        </div>
+    </div>
+
+    <!-- Input Fields -->
+    <div class="input-grid">
+        <div class="input-group">
+            <label for="patient-id">PATIENT ID*</label>
+            <input type="text" id="patient-id" class="input-field" placeholder="e.g. PID0x6418">
+        </div>
+
+        <div class="input-group">
+            <label for="wbc-count">BLOOD CELL COUNT (BCC)</label>
+            <input type="text" id="wbc-count" class="input-field" placeholder="e.g. 7.465056402">
+        </div>
+
+        <div class="input-group">
+            <label for="symptom-1">SYMPTOM-1</label>
+            <input type="text" id="symptom-1" class="input-field" placeholder="e.g. symptom">
+        </div>
+
+        <div class="input-group">
+            <label for="symptom-2">SYMPTOM-2</label>
+            <input type="text" id="symptom-2" class="input-field" placeholder="e.g. symptom">
+        </div>
+    </div>
+
+    <!-- Generate Prediction Button -->
+    <style>
+        .generate-btn {
+            background: linear-gradient(45deg, #ff4081, #2196f3);
+            /* pink to blue gradient */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            background: linear-gradient(45deg, #e040fb, #1976d2);
+            /* slightly darker on hover */
+        }
+    </style>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+        <button class="generate-btn" onclick="generatePrediction()">
+            <i class="fas fa-brain"></i> GENERATE PREDICTION
+        </button>
+    </div>
+
+
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-btn"
+        style="position: absolute; top: 20px; left: 20px; padding: 10px 25px; color: rgb(10, 10, 10); text-decoration: none; background-color: rgb(231, 255, 192); border-radius: 5px;">
+        ← BACK
+    </a>
+
+
+
+    <!-- Loading -->
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner"></i>
+        <p style="margin-top: 10px; color: #d8b208; font-weight: bold;">Analyzing genetic data...</p>
+    </div>
+
+    <!-- Result Box -->
+    <div id="prediction-result" class="glassmorphism" style="display: none;">
+        <h3 class="result-header">
+            <i class="fas fa-robot"></i> Genetic Disease Prediction Results
+        </h3>
+
+        <div class="results-grid" style="display: flex; flex-direction: column; gap: 20px;">
+            <div class="result-item">
+                <h4><i class="fas fa-stethoscope"></i> Predicted Genetic Disorder</h4>
+                <span id="disease-prediction">-</span>
+            </div>
+
+            <div class="result-item">
+                <h4><i class="fas fa-stethoscope"></i> Disorder Subclass</h4>
+                <span id="subclass-prediction">-</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function generatePrediction() {
+            const patientId = document.getElementById('patient-id').value;
+            const wbcCount = document.getElementById('wbc-count').value;
+
+            if (!patientId.trim()) {
+                alert('Please enter a Patient ID');
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('prediction-result').style.display = 'none';
+
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+
+                const result = getPrediction(wbcCount);
+                document.getElementById('disease-prediction').textContent = result.disorder;
+                document.getElementById('subclass-prediction').textContent = result.subclass;
+
+                const resultDiv = document.getElementById('prediction-result');
+                resultDiv.style.display = 'block';
+                resultDiv.classList.add('fade-in');
+
+                setTimeout(() => {
+                    resultDiv.classList.remove('fade-in');
+                }, 600);
+            }, 2000);
+        }
+
+        function getPrediction(wbc) {
+            const val = parseFloat(wbc);
+            if (isNaN(val)) {
+                return { disorder: 'INVALID', subclass: 'INVALID' };
+            }
+
+            if (val < 4.85) {
+                return {
+                    disorder: "Mitochondrial genetic inheritance disorders",
+                    subclass: "Leber's hereditary optic neuropathy"
+                };
+            } else if (val >= 4.85 && val <= 5.05) {
+                return {
+                    disorder: "Single-gene inheritance diseases",
+                    subclass: "Tay-Sachs"
+                };
+            } else {
+                return {
+                    disorder: "Multifactorial genetic inheritance disorders",
+                    subclass: "Leigh syndrome"
+                };
+            }
+        }
+
+        // Enter key triggers prediction
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                generatePrediction();
+            }
+        });
+    </script>
+</body>
+
+</html>
